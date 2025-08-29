@@ -3,7 +3,7 @@ import { StatusBar } from 'expo-status-bar';
 import React, { useCallback, useEffect, useState } from 'react';
 import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
-interface ChuckNorris{
+interface Gato{
   url?: string;
   id?: string;
 }
@@ -11,13 +11,13 @@ interface ChuckNorris{
 
 export default function App() {
 
-  const [Gato, setGato] = useState<ChuckNorris | null>(null);
+  const [Gato, setGato] = useState<Gato | null>(null);
 
 
   const gerargato = useCallback(async () => {
     try {
-      const response = await axios.get<ChuckNorris>(`https://api.thecatapi.com/v1/images/search`);
-      setGato(response.data);
+      const response = await axios.get<Gato[]>(`https://api.thecatapi.com/v1/images/search`);
+      setGato(response.data[0]);
     } catch (error) {
       console.error('Erro ao buscar gato:', error);
     }
