@@ -17,7 +17,7 @@ export default function App() {
   const gerargato = useCallback(async () => {
     try {
       const response = await axios.get<ChuckNorris>(`https://api.thecatapi.com/v1/images/search`);
-      setGato(response.data[0]);
+      setGato(response.data);
     } catch (error) {
       console.error('Erro ao buscar gato:', error);
     }
