@@ -1,88 +1,39 @@
 import axios from 'axios';
 import { StatusBar } from 'expo-status-bar';
 import React, { useCallback, useEffect, useState } from 'react';
-import { Image, StyleSheet, Text, View } from 'react-native';
+import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
 interface ChuckNorris{
-  icon_url?: string;
+  url?: string;
   id?: string;
-  value?: string;
 }
 
 
 export default function App() {
 
-  const [Chuck, setChuck] = useState<ChuckNorris | null>(null);
-  const [isLoading, setIsLoading] = useState(true);
+  const [Gato, setGato] = useState<ChuckNorris | null>(null);
 
-  const translateText = useCallback(async (text: string): Promise<string> => {
+
+  const gerargato = useCallback(async () => {
     try {
-      console.log('Tentando traduzir com LibreTranslate...');
-      
-      const response = await fetch('https://libretranslate.com/translate', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          q: text,
-          source: 'en',
-          target: 'pt',
-          format: 'text'
-        })
-      });
-      
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-      
-      const data = await response.json();
-      
-      if (data.translatedText) {
-        console.log('Tradução bem-sucedida com LibreTranslate');
-        return data.translatedText;
-      } else {
-        throw new Error('Resposta sem texto traduzido');
-      }
-      
+      const response = await axios.get<ChuckNorris>(`https://api.thecatapi.com/v1/images/search`);
+      setGato(response.data[0]);
     } catch (error) {
-      console.error('Erro na tradução:', error);
-      console.log('Retornando texto original em inglês');
-      return text;
+      console.error('Erro ao buscar gato:', error);
     }
   }, []);
 
-  const gerarPiada = useCallback(async () => {
-    try {
-      setIsLoading(true);
-      const response = await axios.get<ChuckNorris>(`https://api.chucknorris.io/jokes/random`);
-      const originalJoke = response.data;
-      
-      if (originalJoke.value) {
-        const translatedText = await translateText(originalJoke.value);
-        setChuck({
-          ...originalJoke,
-          value: translatedText
-        });
-      } else {
-        setChuck(originalJoke);
-      }
-    } catch (error) {
-      console.error('Erro ao buscar piada:', error);
-    } finally {
-      setIsLoading(false);
-    }
-  }, [translateText]);
-  useEffect(() =>{
-    gerarPiada()
-  }, [gerarPiada])
+  useEffect(() => {
+    gerargato();
+  }, [gerargato]);
+
   return (
     <View style={styles.container}>
-
-      <Image style={styles.image} source={{uri: Chuck?.icon_url}} />
-      <Text style={styles.text}>
-        {isLoading ? "Carregando e traduzindo..." : (Chuck?.value ?? "Erro ao carregar piada")}
-      </Text>
+      <Text style={styles.text}>Feito por: Ulisses Damo</Text>
+      <Image style={styles.image} source={{uri: Gato?.url}} />
+      <TouchableOpacity style={styles.button} onPress={gerargato}>
+        <Text style={styles.buttonText}>🐱 Gerar outro gato</Text>
+      </TouchableOpacity>
       <StatusBar style="auto" />
     </View>
   );
@@ -91,16 +42,43 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#152265',
+    backgroundColor: '#F5F5F5',
     alignItems: 'center',
     justifyContent: 'center',
   },
   text: {
-    color: 'red',
-    fontSize: 20,
+    color: '#2C3E50',
+    fontSize: 22,
+    fontFamily: 'Roboto',
+    fontWeight: '600',
+    marginBottom: 30,
+    textAlign: 'center',
   },
   image: {
-    width: 200,
-    height: 200,
+    width: 300,
+    height: 300,
+    borderRadius: 15,
+    marginBottom: 20,
+  },
+  button: {
+    backgroundColor: '#FF6B6B',
+    paddingHorizontal: 30,
+    paddingVertical: 15,
+    borderRadius: 25,
+    marginTop: 20,
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 2,
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 3.84,
+    elevation: 5,
+  },
+  buttonText: {
+    color: '#FFFFFF',
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
   },
 });
