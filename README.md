@@ -1,46 +1,108 @@
-# Welcome to your Expo app 👋
+# Gerador de Gatos - Trabalho Ulisses Damo
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Uma aplicação React Native/Expo que gera imagens aleatórias de gatos usando a API TheCatAPI.
 
-## Get started
+## 🎯 Funcionalidades
 
-1. Install dependencies
+- 🐱 Geração aleatória de imagens de gatos
+- 📱 Interface responsiva e moderna
+- 🎨 Design clean com botão estilizado
+- 🌐 Compatível com web, iOS e Android
 
-   ```bash
-   npm install
-   ```
+## 📋 Pré-requisitos
 
-2. Start the app
+Antes de começar, certifique-se de ter instalado:
 
-   ```bash
-   npx expo start
-   ```
+- [Node.js](https://nodejs.org/) (versão 18 ou superior)
+- [Git](https://git-scm.com/)
+- Um editor de código (recomendado: [VS Code](https://code.visualstudio.com/))
 
-In the output, you'll find options to open the app in a
+### Para usar no celular:
+- **Android**: [Expo Go](https://play.google.com/store/apps/details?id=host.exp.exponent) na Google Play Store
+- **iOS**: [Expo Go](https://apps.apple.com/app/expo-go/id982107779) na App Store
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+## 🚀 Como executar o projeto
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
-
+### 1. Clone o repositório
 ```bash
-npm run reset-project
+git clone https://github.com/ulisses-damo/Trabalho-augusto.git
+cd Trabalho-augusto
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+### 2. Instale as dependências
+```bash
+npm install
+```
 
-## Learn more
+### 3. Execute a aplicação
 
-To learn more about developing your project with Expo, look at the following resources:
+#### Para ver no navegador:
+```bash
+npm run web
+```
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+#### Para ver no celular via Expo Go:
+```bash
+npx expo start
+```
+
+**Após executar `npx expo start`:**
+
+1. **Um QR Code aparecerá no terminal**
+2. **No Android**: Abra o app Expo Go e escaneie o QR Code
+3. **No iOS**: Abra a câmera nativa e escaneie o QR Code (irá abrir no Expo Go)
+4. **Alternativa**: Digite a URL exibida no terminal diretamente no Expo Go
+
+#### Para emuladores (opcional):
+```bash
+# Android (requer Android Studio)
+npm run android
+
+# iOS (requer Xcode - apenas macOS)
+npm run ios
+```
+
+## 📱 Testando no celular
+
+### Passo a passo detalhado:
+
+1. **Instale o Expo Go** no seu celular
+2. **Certifique-se** que o celular e o computador estão na **mesma rede Wi-Fi**
+3. **Execute** `npx expo start` no terminal
+4. **Escaneie o QR Code** que aparece no terminal
+5. **Aguarde** o app carregar no seu celular
+6. **Teste** gerando imagens de gatos!
+
+### Possíveis problemas:
+- **QR Code não funciona**: Use a opção "Send link with email/SMS" no terminal
+- **Conexão lenta**: Tente usar `npx expo start --tunnel`
+- **Erro de rede**: Verifique se ambos dispositivos estão na mesma Wi-Fi
+
+## 🔧 Scripts disponíveis
+
+```bash
+npm run web          # Abre no navegador
+npm run android      # Abre no emulador Android
+npm run ios          # Abre no simulador iOS
+npm run build        # Gera build para produção
+npx expo start       # Inicia servidor de desenvolvimento
+```
+
+## 🛠️ Tecnologias utilizadas
+
+- **React Native** - Framework principal
+- **Expo** - Plataforma de desenvolvimento
+- **TypeScript** - Linguagem de programação
+- **Axios** - Requisições HTTP
+- **TheCatAPI** - API para imagens de gatos
+
+## 👨‍💻 Autor
+
+**Ulisses Damo**
+
+## 📄 Licença
+
+Este projeto é para fins acadêmicos.
 
 ## Join the community
 

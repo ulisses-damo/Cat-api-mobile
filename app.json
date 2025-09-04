@@ -21,7 +21,10 @@
     "web": {
       "bundler": "metro",
       "output": "static",
-      "favicon": "./assets/images/favicon.png"
+      "favicon": "./assets/images/favicon.png",
+      "name": "Gerador de Gatos - Ulisses Damo",
+      "shortName": "Cat Generator",
+      "description": "Aplicativo para gerar imagens aleatórias de gatos"
     },
     "plugins": [
       "expo-router",
